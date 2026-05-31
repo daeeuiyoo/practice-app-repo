@@ -1,0 +1,16 @@
+name: "Commit Message Check"
+
+on:
+  pull_request:
+    types: [opened, edited, synchronized]
+
+jobs:
+  check-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Commit Message Format
+        uses: gsoc-cn/commitlint-github-action@v1.1.0
+        with:
+          # 커밋 메시지 시작에 반드시 [JIRA-번호] 형태가 들어가야만 통과되는 규칙 예시
+          pattern: '^\[JIRA-[0-9]+\]\s.+$'
+          error_message: "커밋 메시지 규칙 위반! '[JIRA-1234] 커밋 내용' 형식으로 작성해주세요."
