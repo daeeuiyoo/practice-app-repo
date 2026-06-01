@@ -1,20 +1,12 @@
-# 1. 로그인 브랜치에 있는지 먼저 확인 (체크아웃)
-git checkout feature/login
-
-# 2. ci.yml 파일을 완벽한 문법으로 덮어쓰기 (공백 줄 제거 버전)
-cat << 'EOF' > .github/workflows/ci.yml
 name: CI-Pipeline
 on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: checkout
       uses: actions/checkout@v4
     - name: test
-      run: |
-        echo "=== GitHub Actions SUCCESS ==="
-        cat service.txt
-EOF
+      run: echo 'SUCCESS'
